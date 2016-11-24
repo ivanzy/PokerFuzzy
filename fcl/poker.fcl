@@ -145,8 +145,26 @@ RULEBLOCK No1
 	RULE 64: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS poucas THEN acao IS allin;
 	RULE 65: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS medias THEN acao IS raise;
 	RULE 66: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS muitas THEN acao IS allin;			
-
-
+	//turn - dealer - raise
+	RULE 67: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS baixa  AND fichas IS poucas AND aposta IS baixa THEN acao IS fold;	
+	RULE 73: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS baixa  AND fichas IS medias  AND aposta IS baixa THEN acao IS fold;	
+	RULE 74: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS baixa AND fichas IS muitas AND aposta IS baixa THEN acao IS raise;	
+	RULE 68: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND fichas IS poucas AND aposta IS baixa THEN acao IS call;	
+	RULE 69: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND fichas IS medias AND aposta IS baixa THEN acao IS call;
+	RULE 70: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND fichas IS muitas AND aposta IS baixa THEN acao IS raise;
+	RULE 71: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta  AND aposta IS baixa THEN acao IS allin;
+	RULE 75: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS baixa  AND aposta IS media THEN acao IS fold;	
+	RULE 76: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND aposta IS media THEN acao IS fold;
+	RULE 77: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta AND fichas IS poucas AND aposta IS media THEN acao IS allin;
+	RULE 78: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta AND fichas IS medias AND aposta IS media THEN acao IS call;
+	RULE 79: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta AND fichas IS muitas AND aposta IS media THEN acao IS raise;
+	RULE 80:  IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS baixa  AND aposta IS alta THEN acao IS fold;	
+	RULE 81: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND fichas IS poucas AND aposta IS alta THEN acao IS call;	
+	RULE 82: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND fichas IS medias AND aposta IS alta THEN acao IS fold;
+	RULE 83: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS media AND fichas IS muitas AND aposta IS alta THEN acao IS fold;	
+	RULE 83: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta AND fichas IS poucas AND aposta IS alta THEN acao IS allin;	
+	RULE 84: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta AND fichas IS medias AND aposta IS alta THEN acao IS call;
+	RULE 85: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS raise AND forca_mao IS alta AND fichas IS muitas AND aposta IS alta THEN acao IS call;		
 
 END_RULEBLOCK
 
