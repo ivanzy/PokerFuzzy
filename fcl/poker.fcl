@@ -118,8 +118,8 @@ RULEBLOCK No1
   	RULE 40: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS raise AND  forca_mao IS media AND fichas IS medias AND aposta IS media THEN acao IS call;
   	RULE 41: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS raise AND  forca_mao IS media AND fichas IS medias AND aposta IS alta THEN acao IS fold; 
 	//flop - dealer -  call
-	RULE 42: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS poucas THEN acao IS fold;
-	RULE 43: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS medias THEN acao IS fold;
+	RULE 42: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS poucas THEN acao IS call;
+	RULE 43: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS medias THEN acao IS call;
 	RULE 44: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS muitas THEN acao IS raise;
 	RULE 45: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS media AND fichas IS poucas THEN acao IS call;
 	RULE 46: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS media AND fichas IS medias THEN acao IS call;
@@ -127,10 +127,24 @@ RULEBLOCK No1
 	RULE 48: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS poucas THEN acao IS allin;
 	RULE 49: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS medias THEN acao IS raise;
 	RULE 50: IF estagio IS flop AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS muitas THEN acao IS raise;
-
-
-
-
+	//flop - blind
+	RULE 51: IF estagio IS flop AND posicao IS blind AND  forca_mao IS baixa THEN acao IS fold;
+	RULE 52: IF estagio IS flop AND posicao IS blind AND  forca_mao IS media AND fichas IS poucas 	THEN acao IS allin;
+	RULE 53: IF estagio IS flop AND posicao IS blind AND  forca_mao IS media AND fichas IS medias THEN acao IS call;
+	RULE 54: IF estagio IS flop AND posicao IS blind AND  forca_mao IS media AND fichas IS muitas THEN acao IS call;
+	RULE 55: IF estagio IS flop AND posicao IS blind AND  forca_mao IS alta AND fichas IS poucas THEN acao IS allin;
+	RULE 56: IF estagio IS flop AND posicao IS blind AND  forca_mao IS alta AND fichas IS medias THEN acao IS raise;
+	RULE 57: IF estagio IS flop AND posicao IS blind AND  forca_mao IS alta AND fichas IS muitas THEN acao IS raise;
+	//turn - dealer - call
+	RULE 58: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS poucas THEN acao IS call;	
+	RULE 59: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS medias THEN acao IS call;	
+	RULE 60: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS baixa AND fichas IS muitas THEN acao IS raise;	
+	RULE 61: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS media AND fichas IS poucas THEN acao IS call;	
+	RULE 62: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS media AND fichas IS medias THEN acao IS call;	
+	RULE 63: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS media AND fichas IS muitas THEN acao IS raise;	
+	RULE 64: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS poucas THEN acao IS allin;
+	RULE 65: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS medias THEN acao IS raise;
+	RULE 66: IF estagio IS turn AND posicao IS dealer AND acao_oponente IS call AND  forca_mao IS alta AND fichas IS muitas THEN acao IS allin;			
 
 
 
