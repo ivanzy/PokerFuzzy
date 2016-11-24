@@ -24,13 +24,13 @@ import java.util.List;
  */
 public class PokerFuzzyGenerator {
 
-    private final double forca_mao;
-    private final int fichas;
-    private final int aposta;
-    private final int posicao;
-    private final int acao_oponente;
-    private final int estagio;
-    private final String fileName = "fcl/poker.fcl";
+    private double forca_mao;
+    private int fichas;
+    private int aposta;
+    private int posicao;
+    private int acao_oponente;
+    private int estagio;
+    private String fileName = "fcl/poker.fcl";
     private FIS fis = null;
     FunctionBlock functionBlock = null;
 
@@ -225,6 +225,29 @@ public class PokerFuzzyGenerator {
 
     public int getEstagio() {
         return estagio;
+    }
+    public void setForca_mao(double forca_mao) {
+        this.forca_mao = forca_mao;
+    }
+
+    public void setFichas(int fichas) {
+        this.fichas = fichas;
+    }
+
+    public void setAposta(int aposta) {
+        this.aposta = aposta;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
+
+    public void setAcao_oponente(int acao_oponente) {
+        this.acao_oponente = acao_oponente;
+    }
+
+    public void setEstagio(int estagio) {
+        this.estagio = estagio;
     }
 
     private String getAcao(double[] vec) {
