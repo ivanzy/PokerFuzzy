@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pokerfuzzy;
+package projetofuzzy;
 
 /**
  *
@@ -11,7 +11,7 @@ package pokerfuzzy;
  */
 public class Fuzzificador {
 
-    public double getForcaMaoPreFlop(int[][] m) {
+    public static double getForcaMaoPreFlop(int[][] m) {
         double f = 0;
         boolean sameSuit = false;
         //check pair
@@ -19,13 +19,19 @@ public class Fuzzificador {
             return ratePairPreFlop(m[0][0]);
         }
 
-        //check same naipe
+        //check same suit
         if (m[1][0] == m[1][1]) {
             sameSuit = true;
         }
-        
+
         //A?
-        if (m[0][0] == 1) {
+        if (m[0][0] == 1 || m[0][1] == 1) {
+            if (m[0][1] == 1) {
+                int temp = m[0][0];
+                m[0][0] = m[0][1];
+                m[0][1] = temp;
+            }
+
             switch (m[0][1]) {
                 case 2:
                     if (sameSuit) {
@@ -118,6 +124,18 @@ public class Fuzzificador {
             return f;
         }
 
+        //order card 
+        if (m[0][0] < m[0][1]) {
+            // swap value
+            int temp = m[0][0];
+            m[0][0] = m[0][1];
+            m[0][1] = temp;
+           // swap suit
+            temp = m[1][0];
+            m[1][0] = m[1][1];
+            m[1][1] = temp;
+
+        }
         //K?
         if (m[0][0] == 13) {
             switch (m[0][1]) {
@@ -824,7 +842,7 @@ public class Fuzzificador {
             }
             return f;
         }
-        
+
         //3?
         if (m[0][0] == 3) {
             switch (m[0][1]) {
@@ -844,7 +862,7 @@ public class Fuzzificador {
         return f;
     }
 
-    private double ratePairPreFlop(int p) {
+    private static double ratePairPreFlop(int p) {
         double f = 0;
         switch (p) {
             case 1:

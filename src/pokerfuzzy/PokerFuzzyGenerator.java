@@ -178,7 +178,7 @@ public class PokerFuzzyGenerator {
         System.out.println("call/check: " + vec[1]);
         System.out.println("raise: " + vec[2]);
         System.out.println("all in: " + vec[3]);
-        System.out.println("Portanto, a ação do jogador é " + getAcao(vec).toUpperCase());
+        System.out.println("Portanto, a ação do jogador é " + getAcao(vec));
 
         /* ===============================================
  * FIM DO METODO DE DEFUZZIFICACAO
@@ -192,7 +192,7 @@ public class PokerFuzzyGenerator {
         return fis.getVariable("acao").getValue();
     }
 
-    public String getAcaoString() {
+    public int getAcaoString() {
         loadVar();
         fis.evaluate();
         double vec[] = new double[4];
@@ -250,10 +250,10 @@ public class PokerFuzzyGenerator {
         this.estagio = estagio;
     }
 
-    private String getAcao(double[] vec) {
+    private int getAcao(double[] vec) {
         double max = vec[0];
         int ind = 0;
-        String acao = new String();
+        int acao = 0;
         for (int i = 0; i < vec.length; i++) {
             if (vec[i] > max) {
                 max = vec[i];
@@ -262,19 +262,19 @@ public class PokerFuzzyGenerator {
         }
         switch (ind) {
             case 0:
-                acao = "fold";
+                acao = 0;
                 break;
             case 1:
-                acao = "call";
+                acao = 1;
                 break;
             case 2:
-                acao = "raise";
+                acao = 2;
                 break;
             case 3:
-                acao = "all in";
+                acao = 3;
                 break;
             default:
-                acao = "não indentificado";
+                acao = 4;
         }
         return acao;
     }
