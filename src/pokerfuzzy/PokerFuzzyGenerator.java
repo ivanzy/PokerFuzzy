@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pokerfuzzy;
+package projetofuzzy;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.FunctionBlock;
@@ -192,7 +192,7 @@ public class PokerFuzzyGenerator {
         return fis.getVariable("acao").getValue();
     }
 
-    public int getAcaoString() {
+    public int getAcaoInt() {
         loadVar();
         fis.evaluate();
         double vec[] = new double[4];
