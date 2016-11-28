@@ -54,8 +54,8 @@ END_FUZZIFY
 
 FUZZIFY forca_mao
 	TERM baixa := (0,1) (0.5,1) (0.55,0); 
-	TERM media := (0.45,0) (0.55,1) (0.57,1) (0.65,0);
-	TERM alta :=  (0.58,0) (0.75,1) (1,1);
+	TERM media := (0.42,0) (0.55,1) (0.62,1) (0.8,0);
+	TERM alta :=  (0.58,0) (0.8,1) (1,1);
 END_FUZZIFY
 
 
