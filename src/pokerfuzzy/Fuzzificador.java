@@ -831,24 +831,24 @@ public class Fuzzificador {
         return f;
     }
 
-    public double rateFlop(int[][] m) {
+    public static double rateFlop(int[][] m) {
         double f = 0;
-        if (findSeqFlush(m, 2) != 0) {
+        if (findSeqFlush(m, 5) != 0) {
             f = 1;
-        } else if (findQuadra(m, 2) != 0) {
+        } else if (findQuadra(m, 5) != 0) {
             f = 0.99;
-        } else if (findFullHouse(m, 2)[0] != 0) {
+        } else if (findFullHouse(m, 5)[0] != 0) {
             f = 0.98;
-        } else if (findFlush(m, 2)) {
+        } else if (findFlush(m, 5)) {
             f = 0.95;
-        } else if (findSeq(m, 2) != 0) {
+        } else if (findSeq(m, 5) != 0) {
             f = 0.9;
-        } else if (findTrips(m, 2) != 0) {
+        } else if (findTrips(m, 5) != 0) {
             f = 0.8;
-        } else if (findTwoPair(m, 2)[0] != 0) {
+        } else if (findTwoPair(m, 5)[0] != 0) {
             f = 0.74;
-        } else if (findPair(m, 2) != 0) {
-            switch (findPair(m, 2)) {
+        } else if (findPair(m, 5) != 0) {
+            switch (findPair(m, 5)) {
                 case 1:
                     f = 0.74;
                     break;
@@ -891,8 +891,8 @@ public class Fuzzificador {
             }
 
         } else /*kicker*/ {
-            if(m[0][0] < m[0][1]){
-                
+            if (m[0][0] < m[0][1]) {
+
             }
             switch (m[0][0]) {
                 case 1:
@@ -931,7 +931,7 @@ public class Fuzzificador {
                 case 12:
                     f = 0.43;
                     break;
-                    
+
                 case 13:
                     f = 0.44;
                     break;
@@ -949,7 +949,7 @@ public class Fuzzificador {
         return f;
     }
 
-    private int findPair(int[][] m, int size) {
+    private static int findPair(int[][] m, int size) {
         int temp, pair = 0;
 
         for (int i = 0; i < size; i++) {
@@ -961,10 +961,12 @@ public class Fuzzificador {
             }
 
         }
+        if(pair!=0)
+            System.out.println("PAR de "+ pair);
         return pair;
     }
 
-    private int findTrips(int[][] m, int size) {
+    private static int findTrips(int[][] m, int size) {
         int temp, cont = 0;
 
         for (int i = 0; i < size; i++) {
@@ -972,7 +974,8 @@ public class Fuzzificador {
             for (int j = i + 1; j < size; j++) {
                 if (temp == m[0][j]) {
                     cont++;
-                    if (cont == 2) {
+                    if (cont >= 2) {
+                        System.out.println("TRINCA de "+temp);
                         return temp;
                     }
                 }
@@ -982,7 +985,7 @@ public class Fuzzificador {
         return 0;
     }
 
-    private int[] findTwoPair(int[][] m, int size) {
+    private static int[] findTwoPair(int[][] m, int size) {
         int temp;
         int[] pair = {0, 0};
 
@@ -1002,39 +1005,43 @@ public class Fuzzificador {
         if (pair[0] == 0 || pair[1] == 0) {
             pair[0] = 0;
             pair[1] = 0;
+        } else{
+            System.out.println("dois pares, de " + pair[0] + " e de " + pair[1]);
         }
         return pair;
     }
 
-    private boolean findFlush(int[][] m, int size) {
+    private static boolean findFlush(int[][] m, int size) {
         boolean isFlush = false;
         int[] suit = {0, 0, 0, 0};
         for (int i = 0; i < size; i++) {
             suit[m[1][i]]++;
         }
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 4; i++) {
             if (suit[i] >= 5) {
+                System.out.println("FLUSH!");
                 isFlush = true;
             }
         }
         return isFlush;
     }
 
-    private boolean findFlushDraw(int[][] m, int size) {
+    private static boolean findFlushDraw(int[][] m, int size) {
         boolean isFlushDraw = false;
         int[] suit = {0, 0, 0, 0};
         for (int i = 0; i < size; i++) {
             suit[m[1][i]]++;
         }
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 4; i++) {
             if (suit[i] == 5) {
+                System.out.println("Uma carta para o FLUSH!");
                 isFlushDraw = true;
             }
         }
         return isFlushDraw;
     }
 
-    private int findSeq(int[][] m, int size) {
+    private static int findSeq(int[][] m, int size) {
         int[] seq = new int[size];
         int cont = 0, maiorV = 0, maiorC = 0;
         for (int i = 0; i < size; i++) {
@@ -1053,14 +1060,15 @@ public class Fuzzificador {
             }
         }
         if (maiorC >= 5) {
-            return maiorV;
+            System.out.println("Sequência até "+ maiorV);
+            return maiorV;           
         } else {
             return 0;
         }
 
     }
 
-    private int findQuadra(int[][] m, int size) {
+    private static int findQuadra(int[][] m, int size) {
         int cont = 0, temp;
         for (int i = 0; i < size; i++) {
             temp = m[0][i];
@@ -1070,6 +1078,7 @@ public class Fuzzificador {
                 }
             }
             if (cont == 4) {
+                System.out.println("QUADRA de "+ temp);
                 return temp;
             } else {
                 cont = 0;
@@ -1080,7 +1089,7 @@ public class Fuzzificador {
     }
 
     // primeiro trinca e depois par
-    private int[] findFullHouse(int[][] m, int size) {
+    private static int[] findFullHouse(int[][] m, int size) {
         int[] fullHouse = {0, 0};
         int temp, cont = 0, trinca = findTrips(m, size);
         if (trinca != 0) {
@@ -1102,11 +1111,15 @@ public class Fuzzificador {
         }
         if (fullHouse[1] == 0) {
             fullHouse[0] = 0;
+        }else{                    
+            System.out.println("FULL HOUSE! Trinca de "+fullHouse[1] + " e par de "+ fullHouse[0]);
+
         }
+        
         return fullHouse;
     }
 
-    private int findSeqFlush(int[][] m, int size) {
+    private static int findSeqFlush(int[][] m, int size) {
         int[] seq = new int[size];
         int cont = 0, maiorV = 0, maiorC = 0;
         for (int i = 0; i < size; i++) {
@@ -1124,15 +1137,19 @@ public class Fuzzificador {
                 cont = 0;
             }
         }
-        int[] suit = new int[4];
-        for (int i = 0; i < size; i++) {
-            if (m[0][i] > maiorV - 5 && m[0][1] <= maiorV) {
-                suit[m[1][i]]++;
+
+        if (maiorC >= 5) {
+            int[] suit = {0, 0, 0, 0};
+            for (int i = 0; i < size; i++) {
+                if (m[0][i] > maiorV - 5 && m[0][1] <= maiorV) {
+                    suit[m[1][i]]++;
+                }
             }
-        }
-        for (int i = 0; i < size; i++) {
-            if (suit[i] >= 5) {
-                return maiorV;
+            for (int i = 0; i < 4; i++) {
+                if (suit[i] >= 5) {
+                    System.out.println("ROYAL FLUSH!");
+                    return maiorV;
+                }
             }
         }
         return 0;
