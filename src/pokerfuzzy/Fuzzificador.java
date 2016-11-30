@@ -968,22 +968,26 @@ public class Fuzzificador {
     }
 
     private static int findTrips(int[][] m, int size) {
-        int trinca=0;
+        int trinca = 0;
         int[] cards = new int[14];
-        for (int i = 0; i < 14; i++) 
-            cards[i]=0;
-        
-        for (int i = 0; i < size; i++) 
+        for (int i = 0; i < 14; i++) {
+            cards[i] = 0;
+        }
+
+        for (int i = 0; i < size; i++) {
             cards[m[0][i]]++;
-        
-        for (int i = 0; i < 14; i++) 
-            if(cards[i]==3)
+        }
+
+        for (int i = 0; i < 14; i++) {
+            if (cards[i] == 3) {
                 trinca = i;
-                
+            }
+        }
+
         return trinca;
     }
 
-    private static int[] findTwoPair(int[][] m, int size) {
+    public static int[] findTwoPair(int[][] m, int size) {
         int temp;
         int[] pair = {0, 0};
 
@@ -1046,18 +1050,25 @@ public class Fuzzificador {
             seq[i] = m[0][i];
         }
         Arrays.sort(seq);
-        for (int i = 1; i < size; i++) {
-            if (seq[i - 1] + 1 == seq[i]) {
+        for (int i = 0; i < size - 1; i++) {
+            //System.out.println(seq[i] + "  " + seq[i + 1]);
+            if ((seq[i] + 1) == seq[i + 1]) {
                 cont++;
                 if (cont >= maiorC) {
                     maiorC = cont;
-                    maiorV = seq[i];
+                    maiorV = seq[i + 1];
+                    //System.out.println(maiorV);
+                    if (maiorV == 13 && seq[0] == 1 && cont==3) {
+                        maiorV = 1;
+                        maiorC++;
+                    }
                 }
             } else {
                 cont = 0;
             }
         }
-        if (maiorC >= 5) {
+
+        if (maiorC >= 4) {
             System.out.println("Sequência até " + maiorV);
             return maiorV;
         } else {
@@ -1097,7 +1108,7 @@ public class Fuzzificador {
                 for (int j = i + 1; j < size; j++) {
                     if (temp == m[0][j]) {
                         cont++;
-                        if (cont == 2 && temp != trinca) {
+                        if (cont == 1 && temp != trinca) {
                             fullHouse[1] = temp;
                         }
 
@@ -1107,10 +1118,11 @@ public class Fuzzificador {
             }
 
         }
+        //System.out.println(fullHouse[0]+"  "+fullHouse[1]);
         if (fullHouse[1] == 0) {
             fullHouse[0] = 0;
         } else {
-            System.out.println("FULL HOUSE! Trinca de " + fullHouse[1] + " e par de " + fullHouse[0]);
+            System.out.println(" FULL HOUSE! Trinca de " + fullHouse[1] + " e par de " + fullHouse[0]);
 
         }
 
@@ -1118,25 +1130,31 @@ public class Fuzzificador {
     }
 
     private static int findSeqFlush(int[][] m, int size) {
-        int[] seq = new int[size];
+         int[] seq = new int[size];
         int cont = 0, maiorV = 0, maiorC = 0;
         for (int i = 0; i < size; i++) {
             seq[i] = m[0][i];
         }
         Arrays.sort(seq);
-        for (int i = 1; i < size; i++) {
-            if (seq[i - 1] + 1 == seq[i]) {
+        for (int i = 0; i < size - 1; i++) {
+            //System.out.println(seq[i] + "  " + seq[i + 1]);
+            if ((seq[i] + 1) == seq[i + 1]) {
                 cont++;
                 if (cont >= maiorC) {
                     maiorC = cont;
-                    maiorV = seq[i];
+                    maiorV = seq[i + 1];
+                    //System.out.println(maiorV);
+                    if (maiorV == 13 && seq[0] == 1 && cont==3) {
+                        maiorV = 1;
+                        maiorC++;
+                    }
                 }
             } else {
                 cont = 0;
             }
         }
 
-        if (maiorC >= 5) {
+        if (maiorC >= 4) {
             int[] suit = {0, 0, 0, 0};
             for (int i = 0; i < size; i++) {
                 if (m[0][i] > maiorV - 5 && m[0][1] <= maiorV) {
