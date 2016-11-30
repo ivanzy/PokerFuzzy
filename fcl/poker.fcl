@@ -101,7 +101,7 @@ RULEBLOCK No1
 	RULE 24: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS call AND  forca_mao IS media AND fichas IS poucas THEN acao IS allin;  
 	RULE 25: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS call AND  forca_mao IS media AND fichas IS medias THEN acao IS call;  
 	RULE 26: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS call AND  forca_mao IS media AND fichas IS muitas THEN acao IS raise; 
-	RULE 27: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS call AND  forca_mao IS alta THEN acao IS allin;  
+	RULE 27: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS call AND  forca_mao IS alta THEN acao IS raise;  
 	// pre flop - bb raise 
 	RULE 28: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS raise AND  forca_mao IS baixa THEN acao IS fold;  
 	RULE 29: IF estagio IS pre_flop AND posicao IS blind AND acao_oponente IS raise AND  forca_mao IS media AND fichas IS poucas AND aposta IS baixa  THEN acao IS allin;  
