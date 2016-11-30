@@ -1420,7 +1420,7 @@ public class Fuzzificador {
         return isFlush;
     }
 
-    public static boolean findFlushDraw(int[][] m, int size) {
+    private static boolean findFlushDraw(int[][] m, int size) {
         boolean isFlushDraw = false;
         int[] suit = {0, 0, 0, 0};
         for (int i = 0; i < size; i++) {
@@ -1563,4 +1563,11 @@ public class Fuzzificador {
         return 0;
     }
 
+    private static int[] findKicker(int[][] m, int size){
+        Arrays.sort(m[0]);
+        int[] seq = new int[5];
+        for(int i =0; i<5;i++)
+            seq[i] = m[0][(size-1)-i];
+        return seq;
+    }
 }
